@@ -1,0 +1,217 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>任务注册</title>
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
+<link rel="stylesheet" type="text/css" href="css/mold.css"/>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/kindeditor/kindeditor.min.js"></script>
+<script type="text/javascript" src="js/kindeditor/zh_CN.js"></script>
+</head>
+
+<body>
+<!--#include file="header.html"--> 
+<script>document.getElementById('Goods').className="curr";</script>
+<form name="taskinfo" method="post" action="SaveTaskInfoServlet"/>
+<div class="main_container">
+  <div class="normal_box">
+    <p class="title site">
+      当前位置：任务注册</p>
+      
+    <div class="top clearfix">
+      <ul class="tab">
+        <li class="curr">
+          <span>任务注册</span>
+        </li>     
+        <ul class="tab">
+		  <li onclick="gotolink('taskreg-1.html')"><span>执行时间选择</span></li>
+	    </ul> 
+      </ul>  
+
+ 
+    </div>             
+      
+        <!--任务基本信息-->
+        <div class="baseInfo" style="margin:20px 35px;">
+          <h3>任务基本信息：</h3>
+          <!--  <form action="?" method="post"> -->
+
+            <table class="form_table" style="margin-top:5px;">
+              <tbody>
+                <tr>
+                  <th width="98"><span class="star">*</span>服务器地址：</th>
+                  <td width="705"><input type="text" id="2" name="serverurl" class="ginput validate[required]" data-rel="服务器地址不能为空！" value="" style="width:390px;"  /></td>
+                </tr>
+                <tr>
+                  <th><span class="star">*</span>任务名称：</th>
+                  <td width="705"><input type="text" id="3" name="taskname" class="ginput validate[required]" data-rel="任务名称不能为空！" value="" style="width:390px;"  /></td>
+                </tr>
+                <tr>
+                  <th><span class="star">*</span>脚本名称：</th>
+                  <td width="705"><input type="text" id="" name="scriptname" class="ginput" style="width:390px;"/></td>                 
+                </tr>
+                <tr>
+                  <th><span class="star">*</span>上传脚本：</th>
+                  <td width="705"><input type="file" align="left" id="" name="scriptpath" class="ginput" style="width:455px;" /></td>
+                  
+                  
+                </tr>
+                                <tr>
+                  <th><span class="star">*</span>程序名称：</th>
+                  <td width="705"><input type="text" id="" name="appname" class="ginput" style="width:390px;"/></td>                 
+                </tr>
+                <tr>
+                  <th><span class="star">*</span>上传程序：</th>
+                  <td width="705"><input type="file" id="" name="apppath" class="ginput" style="width:455px;" /></td>
+                  
+                  
+                </tr>
+                <tr>
+                  <th>默认资源：</th>
+                  <td width="705"><input type="file" id="" name="resourcepath" class="ginput" style="width:455px;" /></td>
+                </tr>
+                                <tr>
+                  <th>任务描述：</th>
+                  <td style="padding-top:20px;"><textarea  onpropertychange="if(value.length>255) value=value.substr(0,255)"  id="editor_id" name="taskdescription" style="width:400px;height:100px;"></textarea>(*限制字数255以内)
+                  </td>
+              </tbody>
+            </table>
+            <p class="blank10">
+            </p>
+            <h3>任务执行信息：</h3>
+            <table class="form_table" style="margin-top:5px;">
+              <tbody>
+
+                <tr>
+                  <th>选择执行方式：</th>
+                  <td><label><input type="radio" name="xtRadio"  checked="checked"/>
+                  立即执行</label>
+                    <label style="padding-left:10px;"><input type="radio" name="xtRadio" />
+                    暂不执行</label>
+                    <label style="padding-left:10px;"><input type="radio" name="xtRadio" />
+                    自动执行</label></td>
+                </tr>
+
+                	<tr>
+						<th></th>
+				    <td>
+							<input type="submit" align="absmiddle" class="btn-save" value="保存" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="reset"  align="absmiddle"class="btn-reset" value="重置" /></td>
+					</tr>
+
+              </tbody>
+            </table>
+
+     
+        </div>
+      </div>
+    </div>
+</form>
+  <!--#include file="footer.shtml"-->
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+var sizeTrArray=new Array(); //尺码数组行
+var colorAttr={code:"",name:""};
+
+
+
+Array.prototype.remove = function(b) {
+var a = this.indexOf(b);
+if (a >= 0) {
+this.splice(a, 1);
+return true;
+}
+return false;
+}; 
+
+//选择颜色
+$("#colorPropList input:radio").click(function(){
+	selectColor($(this));
+});
+
+//选择颜色
+function selectColor(obj)
+{
+var _colorVal=obj.next().css("background-color");
+var _colorName=obj.nextAll(".labelName").html();
+colorAttr.code=_colorVal;
+colorAttr.name=_colorName;
+createSizeTable();
+if(sizeTrArray.length>0 &&colorAttr.code!="")
+{
+$("#propSizeTable").show();
+}
+}
+
+
+
+//选择尺码
+function selectSize(obj){
+	
+		var _sizeVal=obj.next().html();
+		var _chked=obj.attr("checked");
+		var _chkLen=sizeTrArray.length;
+		
+		if(_chked)
+		{
+			sizeTrArray.push(_sizeVal);
+		}
+		else
+		{
+			sizeTrArray.remove(_sizeVal);
+			
+		}
+		createSizeTable();
+		
+		if(sizeTrArray.length>0 &&colorAttr.code!="")
+			$("#propSizeTable").show();
+		else
+			$("#propSizeTable").hide();
+};
+
+//建立尺码属性表格
+function  createSizeTable()
+{
+		$("#propSizeTable tbody").empty();
+		
+			var colorVal=colorAttr.code;
+			var colorName=colorAttr.name;
+			var strHtml='<tr>'+
+			'<td rowspan='+sizeTrArray.length+'><label class="colorLump" style="background-color:'+colorVal+'"></label><label class="labelName">'+colorName+'</label></td>'+
+			'<td>'+sizeTrArray[0]+'</td>'+
+			'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="15" class="editTxt" data-id="" /></td>'+
+			'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="20" class="editTxt" data-id="" /></td>'+
+			'</tr>';
+			
+			for(var j=1;j<sizeTrArray.length;j++)
+			{
+				
+				var size=sizeTrArray[j];
+				var str='<tr>'+
+					'<td>'+size+'</td>'+
+					'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="15" class="editTxt" data-id="" /></td>'+
+					'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="20" class="editTxt" data-id="" /></td>'+
+					'</tr>';
+				strHtml+=str;
+			}
+			
+			$("#propSizeTable tbody").append(strHtml);
+		}
+
+$("#sizePropList input:checkbox").click(function(){
+	selectSize($(this));
+})
+
+
+</script>

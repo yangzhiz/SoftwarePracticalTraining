@@ -1,0 +1,73 @@
+<div class="top_nav">
+	<p>您好，达芙妮鞋业集团公司！ <a href="login.shtml" >[退出]</a></p>
+</div>
+<div class="header">
+	<div class="entity">
+		<p class="logo"><img src="images/logo.jpg" alt="" /></p>
+	</div>
+	<div class="nav">
+		<div class="nav_entity">
+			<ul>
+				<li id="Index">
+					<span><b><a href="index.shtml">首页</a></b></span>
+				</li>
+				<li id="Goods">
+					<span><b><a href="goods.shtml">商品</a></b></span>
+					<div class="popu_nav">
+                    	<ol> <a href="goods-release.shtml">发布商品</a> </ol>
+						<ol> <a href="batch-release.shtml">批量发布商品</a> </ol>
+						<ol> <a href="goods.shtml">全部商品</a> </ol>
+						<ol> <a href="goods-sale.shtml">在售商品</a> </ol>
+						<ol> <a href="goods-storage.shtml">仓库商品</a> </ol>
+                        <ol> <a href="goods-pics.shtml">商品图片管理</a> </ol>
+					</div>
+				</li>
+				<li id="Order">
+					<span><b><a href="deliver-all.shtml">订单</a></b></span>
+					<div class="popu_nav">
+						<ol> <a href="billsPrint-1.shtml">单据打印</a> </ol>
+						<ol> <a href="send-order.shtml">打包发货</a> </ol>
+						<ol> <a href="deliver-all.shtml">备货清单</a> </ol>
+						<ol> <a href="sales.shtml">销售查询</a> </ol>
+					</div>
+				</li>
+				<li id="Stock">
+					<span><b><a href="stock.shtml">库存</a></b></span>
+					<div class="popu_nav">
+						<ol> <a href="stock.shtml">库存查询</a> </ol>
+						<ol> <a href="stock-import.shtml">库存导入</a> </ol>
+					</div>
+				</li>
+				<li id="Sale">
+					<span><b><a href="stock.shtml">售后</a></b></span>
+					<div class="popu_nav">
+						<ol> <a href="qcReject-add.shtml">拒收质检登记</a> </ol>
+						<ol> <a href="qc-add.shtml">售后质检登记</a> </ol>
+						<ol> <a href="qcReturn-add.shtml">退货收货登记</a> </ol>
+						<ol> <a href="qcReject-query.shtml">拒收质检查询</a> </ol>
+						<ol> <a href="qc-query.shtml">售后质检查询</a> </ol>
+					</div>
+				</li>
+				<li id="Blance">
+					<span><b><a href="balance.shtml">结算</a></b></span>
+				</li>
+				<li id="Setting">
+					<span><b><a href="setting-base.shtml">设置</a></b></span>
+					<div class="popu_nav">
+						<ol> <a href="setting-base.shtml">基本信息</a> </ol>
+						<ol> <a href="setting-limits.shtml">权限管理</a> </ol>
+						<ol> <a href="javascript:;" onclick="setAddress();">发货地址</a> </ol>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<script>
+function setAddress()
+{
+	openwindow("setting-send-address.shtml",500,320,"发货地址");
+}
+</script>

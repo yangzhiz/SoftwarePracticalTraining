@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>任务列表</title>
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
+<link rel="stylesheet" type="text/css" href="css/mold.css"/>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+</head>
+
+<body>
+<!--#include file="header.shtml"--> 
+<script>document.getElementById('Goods').className="curr";</script>
+<div class="main_container">
+	<div class="normal_box">
+		<p class="title site">当前位置：<a href="index.shtml"></a>&gt;任务</p>
+
+	  <div class="tab_panel">
+
+<div class="tab_content"> 
+		  
+<!--列表start-->
+<table class="list_table">
+        <thead>
+          <tr>
+            <th class=gridViewHeader scope=col bgcolor="d3eaef"> <input type="checkbox" name="chkAll" id="chkAll" onclick="checkAll();" /></th>
+            <th style="width:100px;">任务ID</th>
+            <th>任务名称</th>
+            <th>创建时间</th>
+            <th>任务状态</th>
+            <th>任务执行次数</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <c:forEach items="${products}" var="s">
+            <tr>
+              <th class=gridViewHeader scope=col bgcolor="d3eaef"> <input type="checkbox" name="chkAll" id="chkAll" onclick="checkAll();" /></th>
+              <td style="text-align:mid;"><a href="#" target="_blank">001</a></td>
+              <td>task001</td>
+              <td>2015-01-20</td>
+              <td>正常</td>
+              <td>100</td>
+              <td><a href="#" target="_blank">查看详情</a> | <a href="#" target="_blank">删除</a> | <a href="#" target="_blank">编辑</a></td>
+            </tr>
+          </c:forEach>
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><a href="#" target="_blank">批量删除</a></td>
+            </tr>
+        </tbody>
+      </table>
+		  <!--列表end--> 
+		  <!--分页start-->
+		  <div class="page_box">
+		<div class="page"> <a class="prevdis" href="javascript:;">&nbsp;</a> <a class="curr" onclick="return false;" href="javascript:;">1</a> <a href="javascript:gotoPage(2);void(0)">2</a> <a href="javascript:gotoPage(3);void(0)">3</a> <a href="javascript:gotoPage(4);void(0)">4</a> <a href="javascript:gotoPage(5);void(0)">5</a> <a href="javascript:gotoPage(6);void(0)">6</a> <a href="javascript:gotoPage(7);void(0)">7</a> <a href="javascript:gotoPage(8);void(0)">8</a> <a href="javascript:gotoPage(9);void(0)">9</a> <a class="next" href="javascript:gotoPage(2);void(0)" >下一页</a> <input id="pager_input" type="text" title="输入页码后点击转到" value="1" class="inputtxt" /> <input class="btn_normal pagego_btn" type="button" onclick="javascript:;" value="转到" name=""> </div>
+				</div>
+				<!--分页end--> 
+			</div>
+		</div>
+	</div>
+	<!--#include file="footer.shtml"--> 
+</div>
+</body>
+</html>
+<script type="text/javascript">
+$("#startTime").calendar({maxDate:'#endTime'});
+$("#endTime").calendar({minDate:'#startTime'});
+
+$(".img").mouseover(function()
+{
+	var bigpic=$(this).attr("bimg");
+	ygdg.dialog({
+		padding:0,
+		title: '',
+		content: '<img src="'+bigpic+'" width=400 height=400  />',
+		id:'bigimg',
+		left:$(this).offset().left+100,
+		top:200,
+		closable:false,
+		fiexed:true
+	});
+}).mouseout(function(){
+	ygdg.dialog.list['bigimg'].close();
+})
+</script>

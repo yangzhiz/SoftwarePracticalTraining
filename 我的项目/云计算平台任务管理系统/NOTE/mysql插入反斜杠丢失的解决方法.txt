@@ -1,0 +1,11 @@
+问题:保存文件路径时,"\"插入到mysql中丢失，"/"无此问题
+
+方法:使用转义字符"\\\\"替换"\",如:
+
+    String scriptpath="a\b";
+    scriptpath=scriptpath.replaceAll("\\\\", "\\\\\\\\");
+
+    或者
+    INSERT INTO `path` VALUES('document\101\1086.pdf');
+    改为
+    INSERT INTO `path` VALUES('document\\101\\1086.pdf');
